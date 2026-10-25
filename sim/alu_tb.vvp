@@ -1,0 +1,92 @@
+#! /ucrt64/bin/vvp
+:ivl_version "13.0 (stable)" "(v13_0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "C:\msys64\ucrt64\lib\ivl\system.vpi";
+:vpi_module "C:\msys64\ucrt64\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\msys64\ucrt64\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\msys64\ucrt64\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\msys64\ucrt64\lib\ivl\va_math.vpi";
+:vpi_module "C:\msys64\ucrt64\lib\ivl\v2009.vpi";
+S_00000145d44a9b70 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_00000145d44a9d00 .scope module, "alu_tb" "alu_tb" 3 3;
+ .timescale -9 -12;
+v00000145d44b8710_0 .var "a", 7 0;
+v00000145d44b8350_0 .var "b", 7 0;
+v00000145d44b8490_0 .net "carry", 0 0, L_00000145d44b8c10;  1 drivers
+v00000145d44b8210_0 .var "carry_in", 0 0;
+v00000145d44b87b0_0 .var "op", 1 0;
+v00000145d44b8850_0 .net "result", 7 0, L_00000145d44b7ef0;  1 drivers
+v00000145d44b88f0_0 .net "zero", 0 0, L_00000145d44b7f90;  1 drivers
+S_00000145d44bbb70 .scope module, "uut" "alu" 3 14, 4 1 0, S_00000145d44a9d00;
+ .timescale 0 0;
+    .port_info 0 /INPUT 8 "a";
+    .port_info 1 /INPUT 8 "b";
+    .port_info 2 /INPUT 2 "op";
+    .port_info 3 /INPUT 1 "carry_in";
+    .port_info 4 /OUTPUT 8 "result";
+    .port_info 5 /OUTPUT 1 "zero";
+    .port_info 6 /OUTPUT 1 "carry";
+L_00000145d4640088 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v00000145d44bbd00_0 .net/2u *"_ivl_0", 0 0, L_00000145d4640088;  1 drivers
+L_00000145d4640118 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v00000145d447eab0_0 .net/2u *"_ivl_14", 7 0, L_00000145d4640118;  1 drivers
+v00000145d44bbda0_0 .net *"_ivl_2", 8 0, L_00000145d44b8990;  1 drivers
+L_00000145d46400d0 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v00000145d44b7db0_0 .net/2u *"_ivl_4", 0 0, L_00000145d46400d0;  1 drivers
+v00000145d44b8530_0 .net *"_ivl_6", 8 0, L_00000145d44b8ad0;  1 drivers
+v00000145d44b8a30_0 .net "a", 7 0, v00000145d44b8710_0;  1 drivers
+v00000145d44b8030_0 .net "b", 7 0, v00000145d44b8350_0;  1 drivers
+v00000145d44b8670_0 .net "carry", 0 0, L_00000145d44b8c10;  alias, 1 drivers
+v00000145d44b83f0_0 .net "carry_in", 0 0, v00000145d44b8210_0;  1 drivers
+v00000145d44b85d0_0 .net "op", 1 0, v00000145d44b87b0_0;  1 drivers
+v00000145d44b7d10_0 .net "result", 7 0, L_00000145d44b7ef0;  alias, 1 drivers
+v00000145d44b80d0_0 .net "sum", 8 0, L_00000145d44b8b70;  1 drivers
+v00000145d44b7e50_0 .net "zero", 0 0, L_00000145d44b7f90;  alias, 1 drivers
+L_00000145d44b8990 .concat [ 8 1 0 0], v00000145d44b8710_0, L_00000145d4640088;
+L_00000145d44b8ad0 .concat [ 8 1 0 0], v00000145d44b8350_0, L_00000145d46400d0;
+L_00000145d44b8b70 .arith/sum 9, L_00000145d44b8990, L_00000145d44b8ad0;
+L_00000145d44b7ef0 .part L_00000145d44b8b70, 0, 8;
+L_00000145d44b8c10 .part L_00000145d44b8b70, 8, 1;
+L_00000145d44b7f90 .cmp/eq 8, L_00000145d44b7ef0, L_00000145d4640118;
+    .scope S_00000145d44a9d00;
+T_0 ;
+    %pushi/vec4 200, 0, 8;
+    %store/vec4 v00000145d44b8710_0, 0, 8;
+    %pushi/vec4 100, 0, 8;
+    %store/vec4 v00000145d44b8350_0, 0, 8;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v00000145d44b87b0_0, 0, 2;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000145d44b8210_0, 0, 1;
+    %delay 10000, 0;
+    %vpi_call/w 3 32 "$display", "result=%d carry=%b zero=%b", v00000145d44b8850_0, v00000145d44b8490_0, v00000145d44b88f0_0 {0 0 0};
+    %pushi/vec4 255, 0, 8;
+    %store/vec4 v00000145d44b8710_0, 0, 8;
+    %pushi/vec4 1, 0, 8;
+    %store/vec4 v00000145d44b8350_0, 0, 8;
+    %delay 10000, 0;
+    %vpi_call/w 3 40 "$display", "result=%d carry=%b zero=%b", v00000145d44b8850_0, v00000145d44b8490_0, v00000145d44b88f0_0 {0 0 0};
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v00000145d44b8710_0, 0, 8;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v00000145d44b8350_0, 0, 8;
+    %delay 10000, 0;
+    %vpi_call/w 3 48 "$display", "result=%d carry=%b zero=%b", v00000145d44b8850_0, v00000145d44b8490_0, v00000145d44b88f0_0 {0 0 0};
+    %pushi/vec4 127, 0, 8;
+    %store/vec4 v00000145d44b8710_0, 0, 8;
+    %pushi/vec4 1, 0, 8;
+    %store/vec4 v00000145d44b8350_0, 0, 8;
+    %delay 10000, 0;
+    %vpi_call/w 3 56 "$display", "result=%d carry=%b zero=%b", v00000145d44b8850_0, v00000145d44b8490_0, v00000145d44b88f0_0 {0 0 0};
+    %vpi_call/w 3 58 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "tb/alu_tb.v";
+    "rtl/alu.v";

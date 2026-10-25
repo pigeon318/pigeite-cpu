@@ -1,0 +1,53 @@
+#! /ucrt64/bin/vvp
+:ivl_version "13.0 (stable)" "(v13_0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\msys64\ucrt64\lib\ivl\system.vpi";
+:vpi_module "C:\msys64\ucrt64\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\msys64\ucrt64\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\msys64\ucrt64\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\msys64\ucrt64\lib\ivl\va_math.vpi";
+:vpi_module "C:\msys64\ucrt64\lib\ivl\v2009.vpi";
+S_00000193a670e6d0 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_00000193a670e860 .scope module, "alu" "alu" 3 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 8 "a";
+    .port_info 1 /INPUT 8 "b";
+    .port_info 2 /INPUT 2 "op";
+    .port_info 3 /INPUT 1 "carry_in";
+    .port_info 4 /OUTPUT 8 "result";
+    .port_info 5 /OUTPUT 1 "zero";
+    .port_info 6 /OUTPUT 1 "carry";
+L_00000193a6791f58 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v00000193a670eaa0_0 .net/2u *"_ivl_0", 0 0, L_00000193a6791f58;  1 drivers
+L_00000193a6791fe8 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v00000193a6790c20_0 .net/2u *"_ivl_14", 7 0, L_00000193a6791fe8;  1 drivers
+v00000193a6790cc0_0 .net *"_ivl_2", 8 0, L_00000193a6791850;  1 drivers
+L_00000193a6791fa0 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v00000193a6790d60_0 .net/2u *"_ivl_4", 0 0, L_00000193a6791fa0;  1 drivers
+v00000193a6790e00_0 .net *"_ivl_6", 8 0, L_00000193a6791670;  1 drivers
+o00000193a674c0a8 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v00000193a6790ea0_0 .net "a", 7 0, o00000193a674c0a8;  0 drivers
+o00000193a674c0d8 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v00000193a6747ad0_0 .net "b", 7 0, o00000193a674c0d8;  0 drivers
+v00000193a6747b70_0 .net "carry", 0 0, L_00000193a6791e90;  1 drivers
+o00000193a674c138 .functor BUFZ 1, c4<z>; HiZ drive
+v00000193a6791b70_0 .net "carry_in", 0 0, o00000193a674c138;  0 drivers
+o00000193a674c168 .functor BUFZ 2, c4<zz>; HiZ drive
+v00000193a67917b0_0 .net "op", 1 0, o00000193a674c168;  0 drivers
+v00000193a6791a30_0 .net "result", 7 0, L_00000193a6791d50;  1 drivers
+v00000193a6791350_0 .net "sum", 8 0, L_00000193a6791210;  1 drivers
+v00000193a6790f90_0 .net "zero", 0 0, L_00000193a6791030;  1 drivers
+L_00000193a6791850 .concat [ 8 1 0 0], o00000193a674c0a8, L_00000193a6791f58;
+L_00000193a6791670 .concat [ 8 1 0 0], o00000193a674c0d8, L_00000193a6791fa0;
+L_00000193a6791210 .arith/sum 9, L_00000193a6791850, L_00000193a6791670;
+L_00000193a6791d50 .part L_00000193a6791210, 0, 8;
+L_00000193a6791e90 .part L_00000193a6791210, 8, 1;
+L_00000193a6791030 .cmp/eq 8, L_00000193a6791d50, L_00000193a6791fe8;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "rtl/alu.v";
