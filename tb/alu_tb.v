@@ -55,6 +55,15 @@ module alu_tb;
     
     $display("result=%d carry=%b zero=%b", result, carry, zero);
 
+    a = 8'd255;
+    b = 8'd0;
+    carry_in = 1'b1;
+    op = 2'b01;
+
+    #10;
+
+    $display("ADC: result=%d carry=%b zero=%b",result, carry, zero);
+
     $finish;
 end
 
