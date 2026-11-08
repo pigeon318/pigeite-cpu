@@ -47,7 +47,7 @@ initial begin
     #4;
     $display("Register A = %d", read_data_a);
 
-    
+    $finish;
 end
 
 
